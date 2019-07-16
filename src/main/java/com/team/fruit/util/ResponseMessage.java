@@ -1,9 +1,7 @@
 package com.team.fruit.util;
 
-import net.sf.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -14,13 +12,13 @@ import java.util.Map;
 public class ResponseMessage {
     private int code;
     private String msg;
-    private List<JSONObject> data;
+    private Map<String, Object> data;
 
-    public ResponseMessage(int code, String msg, List<JSONObject> data) {
+    public ResponseMessage(int code, String msg, Map<String, Object> data) {
         this.code = code;
         this.msg = msg;
         if (null==data) {
-            this.data = new ArrayList<JSONObject>();
+            this.data = new HashMap<String, Object>();
         } else {
             this.data = data;
         }
@@ -42,11 +40,11 @@ public class ResponseMessage {
         this.msg = msg;
     }
 
-    public List<JSONObject> getData() {
+    public Map<String, Object> getData() {
         return data;
     }
 
-    public void setData(List<JSONObject> data) {
+    public void setData(Map<String, Object> data) {
         this.data = data;
     }
 }

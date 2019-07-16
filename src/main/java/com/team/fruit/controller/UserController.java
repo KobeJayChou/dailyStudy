@@ -17,64 +17,62 @@ import java.util.Map;
 /**
  * @author cx
  * @version 1.0
- * @date 2019/5/13 17:29
+ * @date 2019/7/10 17:29
  */
 @RestController
 public class UserController {
-    @RequestMapping(value = "/test1", method = RequestMethod.GET)
-    public ResponseMessage test1(@RequestParam("page") Integer page,
-                                        @RequestParam("pageSize") Integer pageSize) {
-         List<JSONObject> data = new ArrayList<JSONObject>();
-         for (int i = 0; i < 15; i++) {
-             Map<String,Object> map = new HashMap<String,Object>();
-             map.put("col1", i+1+"列1");
-             map.put("col2", i+1+"列2");
-             map.put("col3", i+1+"列3");
-             map.put("totalSize", 15);
-             JSONObject jsonObject = JSONObject.fromObject(map);
-             data.add(jsonObject);
-         }
-         int start = (page - 1) * pageSize;
-         int end = start + pageSize;
-        return new ResponseMessage(CodeMsg.SUCCESS.getCode(),CodeMsg.SUCCESS.getMsg(),data.subList(start, end));
-    }
-    @RequestMapping(value = "/test2", method = RequestMethod.GET)
-    public ResponseMessage test2(@RequestParam("page") Integer page,
+    @RequestMapping(value = "/testGet", method = RequestMethod.GET)
+    public ResponseMessage testGet(@RequestParam("page") Integer page,
                                  @RequestParam("pageSize") Integer pageSize,
-                                 @RequestParam(value = "queryType", defaultValue="", required = false) String queryType) {
+                                 @RequestParam(value = "queryType", defaultValue="", required = false) String queryType,
+                                 @RequestParam(value = "col1", defaultValue="", required = false) String col1,
+                                 @RequestParam(value = "col2", defaultValue="", required = false) String col2,
+                                 @RequestParam(value = "col3", defaultValue="", required = false) String col3) {
+        List<JSONObject> data = new ArrayList<JSONObject>();
+        int range = 32;
+        if (col1.equals("1列1")) {
+            Map<String,Object> res = new HashMap<String, Object>();
+            res.put("total",0);
+            res.put("data",data);
+            return new ResponseMessage(CodeMsg.SUCCESS.getCode(),CodeMsg.SUCCESS.getMsg(),res);
+        }
+        for (int i = 0; i < range; i++) {
+            Map<String,Object> map = new HashMap<String,Object>();
+            map.put("col1", i+1+"列1" + queryType + col1 + col2 + col3);
+            map.put("col2", i+1+"列2" + queryType + col1 + col2 + col3);
+            map.put("col3", i+1+"列3" + queryType + col1 + col2 + col3);
+            JSONObject jsonObject = JSONObject.fromObject(map);
+            data.add(jsonObject);
+        }
+        int start = (page - 1) * pageSize;
+        int end = start + pageSize;
+        int subEnd = end > 32 ? 32 : end;
+        Map<String,Object> res = new HashMap<String, Object>();
+        res.put("total",32);
+        res.put("data",data.subList(start, subEnd));
+        return new ResponseMessage(CodeMsg.SUCCESS.getCode(),CodeMsg.SUCCESS.getMsg(),res);
+    }
+    @RequestMapping(value = "/testPost", method = RequestMethod.POST)
+    public ResponseMessage testPost(@RequestParam("page") Integer page,
+                                        @RequestParam("pageSize") Integer pageSize,
+                                        @RequestParam(value = "queryType", defaultValue="", required = false) String queryType,
+                                        @RequestParam(value = "col1", defaultValue="", required = false) String col1,
+                                        @RequestParam(value = "col2", defaultValue="", required = false) String col2,
+                                        @RequestParam(value = "col3", defaultValue="", required = false) String col3) throws Exception {
         List<JSONObject> data = new ArrayList<JSONObject>();
         for (int i = 0; i < 32; i++) {
             Map<String,Object> map = new HashMap<String,Object>();
-            map.put("col1", i+1+"列1" + queryType);
-            map.put("col2", i+1+"列2" + queryType);
-            map.put("col3", i+1+"列3" + queryType);
-            map.put("totalSize", 32);
+            map.put("col1", i+1+"列1" + queryType + col1 + col2 + col3);
+            map.put("col2", i+1+"列2" + queryType + col1 + col2 + col3);
+            map.put("col3", i+1+"列3" + queryType + col1 + col2 + col3);
             JSONObject jsonObject = JSONObject.fromObject(map);
             data.add(jsonObject);
         }
         int start = (page - 1) * pageSize;
         int end = start + pageSize;
-        return new ResponseMessage(CodeMsg.SUCCESS.getCode(),CodeMsg.SUCCESS.getMsg(),data.subList(start, end));
-    }
-    @RequestMapping(value = "/test3", method = RequestMethod.GET)
-    public ResponseMessage test3(@RequestParam("page") Integer page,
-                                        @RequestParam("pageSize") Integer pageSize) {
-        List<JSONObject> data = new ArrayList<JSONObject>();
-        for (int i = 0; i < 301; i++) {
-            Map<String,Object> map = new HashMap<String,Object>();
-            map.put("col1", i+1+"列1");
-            map.put("col2", i+1+"列2");
-            map.put("col3", i+1+"列3");
-            map.put("totalSize", 301);
-            JSONObject jsonObject = JSONObject.fromObject(map);
-            data.add(jsonObject);
-        }
-        int start = (page - 1) * pageSize;
-        int end = start + pageSize;
-        return new ResponseMessage(CodeMsg.SUCCESS.getCode(),CodeMsg.SUCCESS.getMsg(),data.subList(start, end));
-    }
-    @RequestMapping(value = "/getUserInfo2", method = RequestMethod.GET)
-    public ResponseMessage getUserInfo2() {
-        return new ResponseMessage(CodeMsg.PASSWORD_EMPTY.getCode(),CodeMsg.PASSWORD_EMPTY.getMsg(),null);
+        Map<String,Object> res = new HashMap<String, Object>();
+        res.put("total",32);
+        res.put("data",data.subList(start, end));
+        return new ResponseMessage(CodeMsg.SUCCESS.getCode(),CodeMsg.SUCCESS.getMsg(),res);
     }
 }

@@ -17,9 +17,9 @@ import java.util.Map;
 public class Testapi {
     @RequestMapping(value = "/requestgetTime", method = RequestMethod.GET)
     public Map<String, Object> requestgetTime(@RequestParam(value ="startTime") String startTime,@RequestParam(value ="endTime") String endTime) throws Exception {
-        Map<String, Object> rtnMap = new HashMap<>();
+        Map<String, Object> rtnMap = new HashMap();
         rtnMap.put("rtnCode", "200");
-        ArrayList<Map> list = new ArrayList<>();
+        ArrayList<Map> list = new ArrayList();
         for (int a = 0; a < 10; a++) {
             Map m1 = new HashMap();
             m1.put("x", a);
@@ -34,9 +34,9 @@ public class Testapi {
     }
     @RequestMapping(value = "/requestPost", method = RequestMethod.POST)
     public Map<String, Object> requestPost(@RequestParam(value ="appNo") String appNo1) throws Exception {
-        Map<String, Object> rtnMap = new HashMap<>();
+        Map<String, Object> rtnMap = new HashMap();
         rtnMap.put("rtnCode", "200");
-        ArrayList<Map> list = new ArrayList<>();
+        ArrayList<Map> list = new ArrayList();
         for (int a = 0; a < 5; a++) {
             Map m1 = new HashMap();
             m1.put("x", a);
@@ -51,9 +51,9 @@ public class Testapi {
     }
     @RequestMapping(value = "/requestGet", method = RequestMethod.GET)
     public Map<String, Object> requestGet(@RequestParam(value ="appNo") String appNo1) throws Exception {
-        Map<String, Object> rtnMap = new HashMap<>();
+        Map<String, Object> rtnMap = new HashMap();
         rtnMap.put("rtnCode", "200");
-        ArrayList<Map> list = new ArrayList<>();
+        ArrayList<Map> list = new ArrayList();
         for (int a = 0; a < 5; a++) {
             Map m1 = new HashMap();
             m1.put("x", a);
