@@ -1,4 +1,4 @@
-package com.team.fruit.util;
+package com.xunc.dailyStudy.util;
 
 
 import java.util.HashMap;

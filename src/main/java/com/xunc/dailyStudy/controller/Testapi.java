@@ -1,8 +1,5 @@
-package com.team.fruit.controller;
+package com.xunc.dailyStudy.controller;
 
-import com.team.fruit.util.CodeMsg;
-import com.team.fruit.util.ResponseMessage;
-import net.sf.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController

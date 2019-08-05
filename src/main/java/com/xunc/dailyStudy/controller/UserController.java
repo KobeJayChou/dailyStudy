@@ -1,9 +1,8 @@
-package com.team.fruit.controller;
+package com.xunc.dailyStudy.controller;
 
-import com.team.fruit.util.CodeMsg;
-import com.team.fruit.util.ResponseMessage;
+import com.xunc.dailyStudy.util.CodeMsg;
+import com.xunc.dailyStudy.util.ResponseMessage;
 import net.sf.json.JSONObject;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

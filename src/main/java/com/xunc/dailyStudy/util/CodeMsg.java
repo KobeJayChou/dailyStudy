@@ -1,4 +1,4 @@
-package com.team.fruit.util;
+package com.xunc.dailyStudy.util;
 
 /**
  * @author cx
